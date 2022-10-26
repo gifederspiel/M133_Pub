@@ -27,3 +27,23 @@ function updateToDoListOnScreen() {
 document.addEventListener("DOMContentLoaded", (event) => {
   updateToDoListOnScreen();
 });
+
+document.getElementById("aufraeumen").addEventListener("click", () => {
+  let newTodos = []
+  for (const todo of todos) {
+    if (todo.erledigt){
+      newTodos.push(todo)
+    }
+  }
+  todos = newTodos
+  updateToDoListOnScreen()
+})
+
+document.addEventListener("keypress", (event) => {
+  let newTodo = document.getElementById("neuesToDo")
+  if(event.key === "Enter" && newTodo.value != ""){
+    todos.push(new ToDo(newTodo.value, false))
+    updateToDoListOnScreen()
+    newTodo.value = ""
+  }
+})
